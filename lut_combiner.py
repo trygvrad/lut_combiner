@@ -141,7 +141,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.color_0_button.clicked.connect(self.color_0_button_clicked)
         self.color_1_button.clicked.connect(self.color_1_button_clicked)
 
-        self.label.setText(' By Marie Curie fellow Trygve M. R'+chr(int('00E6', 16))+'der for use in the group of Hugh Simons at DTU. Use at own risk. MIT lisence. https://github.com/trygvrad/lut_combinerer')
+        self.label.setText(' By Marie Curie fellow Trygve M. R'+chr(int('00E6', 16))+'der. Use at own risk. MIT lisence. https://github.com/trygvrad/lut_combiner')
         #self.save_image_button.clicked.connect(self.save_clicked)
         if 0: # modify the histogram to hide stuff
             try:
