@@ -14,7 +14,20 @@ import tifffile
 import datetime
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
-        pyqtgraph.setConfigOption('background', 'w')
+        pyqtgraph.setConfigOption('background', 'W')
+        #set theme:
+        if getattr(sys, 'frozen', False):
+            application_path = os.path.dirname(sys.executable)
+        elif __file__:
+            application_path = os.path.dirname(__file__)
+        path = 'set_theme.py'
+        if not os.path.exists(path):
+            path = str(application_path) + '/set_theme.py'
+        if os.path.exists(path):
+            with open(path) as f:
+                code = compile(f.read(), path, 'exec')
+                exec(code, globals(), locals())
+
         super(MainWindow, self).__init__(*args, **kwargs)
         #Load the UI Page
 
