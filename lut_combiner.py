@@ -14,7 +14,7 @@ import tifffile
 import datetime
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
-        pyqtgraph.setConfigOption('background', 'W')
+        pyqtgraph.setConfigOption('background', 'w')
         #set theme:
         if getattr(sys, 'frozen', False):
             application_path = os.path.dirname(sys.executable)
@@ -27,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow):
             with open(path) as f:
                 code = compile(f.read(), path, 'exec')
                 exec(code, globals(), locals())
+
 
         super(MainWindow, self).__init__(*args, **kwargs)
         #Load the UI Page
@@ -50,6 +51,8 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi(path, self)
 
         self.setObjectName("MainWindow")
+        # set icon
+        self.setWindowIcon(QtGui.QIcon('iconOri.ico'))
 
         colors = [
             (0, 0, 0),

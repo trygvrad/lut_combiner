@@ -21,7 +21,7 @@ palette.setColor(QPalette.HighlightedText, Qt.black)
 QApplication.setPalette(palette)
 
 import pyqtgraph
-pyqtgraph.setConfigOption('background', 'k')
+pyqtgraph.setConfigOption('background', [30,30,30])
 
 import matplotlib as mpl
-mpl.rcParams["figure.facecolor"] = 'black'
+mpl.rcParams["figure.facecolor"] = np.array([30/255,30/255,30/255])
