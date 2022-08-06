@@ -418,7 +418,10 @@ class MainWindow(QtWidgets.QMainWindow):
             self.img_1.setColorMap(pyqtgraph.ColorMap(pos=np.linspace(0.0, 1.0, 256), color=self.stamp[1]))
             self.mpl_ax[2].imshow(self.stamp[2][:,np.newaxis,:]*np.ones((256,20,3), dtype = int), origin = 'lower')
             self.img_2.setColorMap(pyqtgraph.ColorMap(pos=np.linspace(0.0, 1.0, 256), color=self.stamp[2]))
-
+        # hide ticks
+        self.img_0.ui.histogram.gradient.showTicks(False)
+        self.img_1.ui.histogram.gradient.showTicks(False)
+        self.img_2.ui.histogram.gradient.showTicks(False)
         self.mpl_fig.canvas.draw()
         self.update_composite()
 
