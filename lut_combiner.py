@@ -15,7 +15,6 @@ import tifffile
 import datetime
 import PySide2.QtUiTools
 from PySide2.QtUiTools import QUiLoader
-import pyqtgraph
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
 class UiLoader(QUiLoader):
