@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import PyQt5
+import PySide2
 import pyqtgraph
 import matplotlib
 import os

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import  QColorDialog #QTreeWidgetItem
+from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2.QtGui import QColor
+from PySide2.QtWidgets import  QColorDialog #QTreeWidgetItem
+
 import pyqtgraph
 import os
 import sys
@@ -12,6 +13,28 @@ import threading
 import pathlib
 import tifffile
 import datetime
+import PySide2.QtUiTools
+from PySide2.QtUiTools import QUiLoader
+import pyqtgraph
+
+QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
+class UiLoader(QUiLoader):
+    def __init__(self, base_instance):
+        QUiLoader.__init__(self, base_instance)
+        self.base_instance = base_instance
+
+    def createWidget(self, class_name, parent=None, name=''):
+        if parent is None and self.base_instance:
+            return self.base_instance
+        elif class_name == "ImageView":
+            return pyqtgraph.ImageView(parent=parent)
+        else:
+            # create a new widget for child widgets
+            widget = QUiLoader.createWidget(self, class_name, parent, name)
+            if self.base_instance:
+                setattr(self.base_instance, name, widget)
+            return widget
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         pyqtgraph.setConfigOption('background', 'w')
@@ -30,12 +53,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
         super(MainWindow, self).__init__(*args, **kwargs)
-        #Load the UI Page
 
         if getattr(sys, 'frozen', False):
             application_path = os.path.dirname(sys.executable)
         elif __file__:
             application_path = os.path.dirname(__file__)
+
 
         i = 0
         if os.path.exists('lut_combiner.ui'):
@@ -48,7 +71,8 @@ class MainWindow(QtWidgets.QMainWindow):
                     break
             path = str(application_path) + '/lut_combiner.ui'
 
-        uic.loadUi(path, self)
+        loader = UiLoader(self)
+        widget = loader.load(path)
 
         self.setObjectName("MainWindow")
         # set icon
@@ -389,7 +413,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 stamp = [255-stamp[0], 255-stamp[1], 255-stamp[2]]
         return stamp
 
-    @QtCore.pyqtSlot(object)
+    @QtCore.Slot(object)
     def update_composite_slot(self, *args):
         if self.updating_colors == False:
             self.updating_colors = True
@@ -437,7 +461,7 @@ class rimt():
     def __init__(self, send_queue, return_queue):
         self.send_queue = send_queue
         self.return_queue = return_queue
-        self.main_thread = threading.currentThread()
+        self.main_thread = threading.current_thread()
 
     def rimt(self, function, *args, **kwargs):
         if threading.currentThread() == self.main_thread:
