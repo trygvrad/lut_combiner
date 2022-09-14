@@ -1,8 +1,8 @@
 # lut_combiner
 
-Simple pyqt5 application to view .tif files form microscopy, assign different lookup tables (lut) and combine the images
+Simple application to view .tif files form microscopy, assign different lookup tables (lut) and combine the images
 
-Using pyQt5, pyqtgraph, matplotlib and https://github.com/cleterrier/ChrisLUTs
+Using PySide2, pyqtgraph, matplotlib and https://github.com/cleterrier/ChrisLUTs
 
 # Usage
 Pre-compiled for windows, for mac, linux run loader.py in python and install required packages (all listed in loader.py)
