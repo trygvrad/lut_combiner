@@ -1,2 +1,2 @@
-python -m PyInstaller --hidden-import=tifffile --hidden-import pyqtgraph.graphicsItems.ViewBox.axisCtrlTemplate_pyqt5 --hidden-import pyqtgraph.graphicsItems.PlotItem.plotConfigTemplate_pyqt5 --hidden-import pyqtgraph.imageview.ImageViewTemplate_pyqt5 --exclude-module scipy --exclude-module tkinter --icon=iconOri.ico --log-level=DEBUG --onefile --windowed loader.py
+python3 -m PyInstaller --hidden-import=tifffile --hidden-import PySide2.QtUiTools --exclude-module scipy --exclude-module tkinter --exclude-module pyqt5 --icon=iconOri.ico --log-level=DEBUG  --onefile --windowed loader.py
 %Pause 

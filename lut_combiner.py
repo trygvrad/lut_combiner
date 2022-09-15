@@ -182,32 +182,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.label.setText(' By Marie Curie fellow Trygve M. R'+chr(int('00E6', 16))+'der. Use at own risk. MIT lisence. https://github.com/trygvrad/lut_combiner')
         #self.save_image_button.clicked.connect(self.save_clicked)
-        if 0: # modify the histogram to hide stuff
-            try:
-                pyqtgraph.fn # <--- old versions of pyqtgraph will fail on this line
-                histogram_width = 50
-                self.img_0.ui.gridLayout.setColumnMinimumWidth(3,-(106-histogram_width)) # hack with negative width to get correct placement of histogram with a low width
-                # 116 to also remove colorbar
-                self.img_0.ui.histogram.vb.setMaximumWidth(histogram_width)
-                #self.img_0.ui.histogram.axis.hide()
-                self.img_0.ui.histogram.axis.setWidth(0)
-                self.img_0.ui.histogram.axis.setStyle(tickLength = -histogram_width)
-                self.img_0.ui.histogram.axis.setStyle(tickTextOffset = -histogram_width+10)
-                self.img_0.ui.histogram.axis.setStyle(tickTextOffset = -histogram_width+10)
-
-                # self.img_0.ui.histogram.vb.setLogMode('x',True) # should be possible in pyqtgraph >= 0.12.4
-                self.img_0.ui.histogram.axis.setPen(pyqtgraph.fn.mkPen((0, 0, 0, 50)))
-                self.img_0.ui.histogram.axis.setTextPen(pyqtgraph.fn.mkPen((98, 98, 98, 255)))
-
-                self.img_0.ui.histogram.region.setBrush(pyqtgraph.fn.mkBrush((0, 0, 0, 100)))
-                self.img_0.ui.histogram.region.setHoverBrush(pyqtgraph.fn.mkBrush((100, 100, 100, 100)))
-                self.img_0.ui.histogram.region.lines[0].setPen(pyqtgraph.fn.mkPen((0, 90, 150, 255)))
-                self.img_0.ui.histogram.region.lines[1].setPen(pyqtgraph.fn.mkPen((0, 90, 150, 255)))
-
-                self.img_0.ui.histogram.plots[0].setBrush((0, 0, 0))
-                #self.img_0.ui.histogram.axis.setStyle(tickTextOffset = 3)
-            except:
-                None
 
         self.cmap_changed_slot(0)
 
